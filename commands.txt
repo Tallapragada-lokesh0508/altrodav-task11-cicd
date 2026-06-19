@@ -1,0 +1,47 @@
+=== ALTRODAV TECHNOLOGIES - TASK 11 GIT & WORKFLOW COMMANDS ===
+Name: Karthik
+Role: DevOps Engineer Intern
+Date: June 19, 2026
+
+=== TASK 1: REPOSITORY SETUP ===
+git config --global user.name "Karthik"        # Set git username
+git config --global user.email "email"         # Set git email
+git clone <repo-url>                            # Clone repository to local machine
+git branch                                      # Check current branch
+git checkout -b develop                         # Create and switch to develop branch
+git push -u origin develop                      # Push develop branch to remote
+git checkout main                               # Switch back to main branch
+git branch -a                                   # List all branches (local + remote)
+
+=== TASK 2: GITHUB ACTIONS WORKFLOW ===
+mkdir -p .github/workflows                      # Create workflows directory
+# Created build.yml, test.yml, deploy.yml inside .github/workflows/
+# Workflows configured to trigger on: push to main/develop, pull requests to main/develop
+
+=== TASK 3: AUTOMATED TESTING ===
+pip install -r requirements.txt                 # Install pytest and flake8
+python -m pytest test_app.py -v                  # Run unit tests locally
+# In GitHub Actions: pytest test_app.py -v runs automatically on every push
+
+=== TASK 4: BUILD AUTOMATION ===
+python app.py                                    # Verify application runs (build check)
+# GitHub Actions: actions/setup-python installs Python, pip installs dependencies,
+# build_status.txt generated as build artifact, uploaded via actions/upload-artifact
+
+=== TASK 5: CODE QUALITY CHECKS ===
+python -m flake8 app.py --max-line-length=100    # Run linting locally
+# Fixed PEP8 spacing issues (E302, E305) identified by flake8
+# GitHub Actions: flake8 runs automatically in test.yml workflow
+
+=== TASK 6: DEPLOYMENT SIMULATION ===
+# deploy.yml triggers only on push to main branch
+# Sets environment variables DEPLOY_ENV and APP_VERSION using $GITHUB_ENV
+# Simulates deployment by running app.py and printing deployment status
+
+=== TASK 7: WORKFLOW MONITORING ===
+# Monitored via GitHub Actions tab: Total Runs, Success Rate, Build Duration
+# Evidence saved in workflow_monitoring.txt
+
+git add .
+git commit -m "commit message"
+git push origin main
